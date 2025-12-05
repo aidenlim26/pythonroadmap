@@ -3,3 +3,4 @@ capitals = {"China" : "Beijing",
             "France" : "Paris"}
 print(capitals.get("France"))
 print(capitals.get("USA"))
+print(capitals.get("China"))
