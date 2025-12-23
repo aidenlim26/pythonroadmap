@@ -54,3 +54,6 @@ df1["Cabin"] = pd.to_numeric(df1["Cabin"],errors="coerce")  #errors="coerce" mea
 mode = df1["Embarked"].mode()[0]      #The [0] is just to get rid of the index
 print(mode)
 #print(df.to_string())
+
+# 10. Coverting values to a date (datetime)
+df["Permit Creation Date"] = pd.to_datetime(df["Permit Creation Date"],errors="coerce") #from object to a date e.g. (2016-05-27)
