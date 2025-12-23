@@ -34,4 +34,19 @@ df["species"] = df["species"].str.lower()        #Make all values in the column 
 # 6. Remove duplicate values
 df = df.drop_duplicates()           #Deletes all duplicate rows
 
-print(df.to_string())
+# 7. Sorting values from largest to smallest
+s = pd.Series([10,2,7], index=["A","B","C"])
+sortedvalues = s.sort_values(ascending=False)       #".sort_values(ascending=False)" sorts from largest to smallest
+#print(sortedvalues)
+
+# 8. Converting values to int/float
+df1 = pd.read_csv("titanic_passengers.csv")
+#print(df1.dtypes)
+df1["Cabin"] = pd.to_numeric(df1["Cabin"],errors="coerce")  #errors="coerce" means if there's any errors would just show as "NaN"
+#print(df1.to_string())
+#print(df1.dtypes)
+
+# 9. Finding the most frequent value = .mode()
+mode = df1["Embarked"].mode()[0]      #The [0] is just to get rid of the index
+print(mode)
+#print(df.to_string())
