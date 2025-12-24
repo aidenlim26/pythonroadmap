@@ -26,7 +26,9 @@ df["species"] = df["species"].replace({"Iris-setosa":"SETOSA"})         #df[], s
                                                                         #you can add multiple things to change in the dictionary
 
 # 4. Standardise text
+df["species"] = df["species"].str.strip()        #Removes all spaces before the words
 df["species"] = df["species"].str.lower()        #Make all values in the column lower case
+df["species"] = df["species"].str.title()        #Make only the first value capital, everything else lower
 
 # 5. Fix data types
 #df["Legendary"] = df["Legendary"].astype(bool)  #astype function changes the datatype
@@ -57,3 +59,7 @@ print(mode)
 
 # 10. Coverting values to a date (datetime)
 df["Permit Creation Date"] = pd.to_datetime(df["Permit Creation Date"],errors="coerce") #from object to a date e.g. (2016-05-27)
+
+# 11. Finding unique values
+unique_values = df["Description"].unique()  #shows all the unique values
+unique_values_count = df["Description"].nunique(dropna=True)        #Counts number of unique values sort of like .sum()
