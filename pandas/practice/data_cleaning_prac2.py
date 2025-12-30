@@ -79,14 +79,29 @@ df = df.fillna({"Embarked":"Missing"})
 embarked_proportions = df["Embarked"].value_counts(normalize=True)*100
 #print(embarked_proportions)
 #Map Sex to numeric (male->0, female->1) into a new column SexCode.
-SexCode = df["Sex"].replace({"male":0,"female":1})
+#SexCode = df["Sex"].replace({"male":0,"female":1})
 #print(SexCode)
 
 
 #STRING CLEANING
 #Extract title from Name (e.g., Mr, Mrs, Miss) into a Title column.
-
+df["Title"] = df["Name"].str.extract(r",\s*([^\.]+)\.", expand=False).str.strip()
+#print(df["Title"])
 #Show the top 10 most common titles.
+top_10_titles = (df["Title"].value_counts(normalize=True)*100)
+#print(top_10_titles)
+
+#OUTLIERS & VALIDATION
+#Find rows with Age < 0, Fare < 0, or Fare > 500. How many? Show first 10.
+df = df.fillna({"Age":"Missing"})
+age_outliers = (df["Age"]<0).sum()
+#print(age_outliers)
+fare_outliers = df[((df["Fare"]<0) | (df["Fare"]>500))].head(10)
+print(fare_outliers)
+
+
+
+
 
 
 

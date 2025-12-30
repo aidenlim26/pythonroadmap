@@ -63,3 +63,10 @@ df["Permit Creation Date"] = pd.to_datetime(df["Permit Creation Date"],errors="c
 # 11. Finding unique values
 unique_values = df["Description"].unique()  #shows all the unique values
 unique_values_count = df["Description"].nunique(dropna=True)        #Counts number of unique values sort of like .sum()
+
+# 12. Extracting text from a string in a column
+df["Name"].str.extract(r",^\s*([A-Za-z]+)\.", expand=False)         #"," = where does the extraction begin from? extraction starts after the comma
+                                                                    #"^" = start of the string
+                                                                    #"\s*" = optional spaces at the beginning
+                                                                    #"([A-Za-z]+)" = capture one or more letters (this is what you want)
+                                                                    #"\." = a literal dot . (dot is special in regex, so we escape it)
