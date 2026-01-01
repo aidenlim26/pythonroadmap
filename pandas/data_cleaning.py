@@ -25,6 +25,11 @@ df["species"] = df["species"].replace({"Iris-setosa":"SETOSA"})         #df[], s
                                                                         #value=what u want to replace it with
                                                                         #you can add multiple things to change in the dictionary
 
+df = df.rename(columns={                                                #Use .rename() to rename column headers
+    "Actual\xa0gross": "Actual Gross",
+    "Adjusted\xa0gross (in 2022 dollars)": "Adjusted Gross (2022 dollars)"
+})
+
 df["active"] = df["active"].map(fix_active_booleans).fillna(False).astype(bool)  #Map function is different as it returns NaN for values not found in the dictionary
                                                                                  #Good for booleans
 
@@ -74,3 +79,6 @@ df["Name"].str.extract(r",^\s*([A-Za-z]+)\.", expand=False)         #"," = where
                                                                     #"\s*" = optional spaces at the beginning
                                                                     #"([A-Za-z]+)" = capture one or more letters (this is what you want)
                                                                     #"\." = a literal dot . (dot is special in regex, so we escape it)
+# 13. Splitting a string
+df[["start_year", "end_year"]] = df["Year(s)"].str.split("-", n=1, expand=True)     #split df["year(s) into df["start_year"] and df["end_year"]
+                                                                                    #seperates at "-" and only splits once (n=1)
