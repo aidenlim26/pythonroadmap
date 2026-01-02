@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("highest_grossing_concert_tours.csv")
+df = pd.read_csv("pandas/data_cleaning/highest_grossing_concert_tours/highest_grossing_concert_tours.csv")
 
 #CLEAN HEADERS
 #print(df.columns.to_list())
